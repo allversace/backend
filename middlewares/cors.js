@@ -1,5 +1,6 @@
 const allowedCors = [
-    'http://pindiefrontendversace.nomoredomainswork.ru'
+    'http://pindiefrontendversace.nomoredomainswork.ru',
+    'https://pindiebackwistonss.nomoredomainswork.ru/'
 ];
 
 const cors = (req, res, next) => {
