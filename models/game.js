@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
-const userModel = require('./user');
+
 const categoryModel = require('./category');
+const userModel = require('./user');
+
 const gameSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
     developer: {
         type: String,
@@ -16,35 +18,36 @@ const gameSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        require: true
+        required: true
     },
     link: {
         type: String,
-        require: true
+        required: true
     },
     users: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: userModel
+        ref: userModel,
     }],
     categories: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: categoryModel
-    }]
+        ref: categoryModel,
+    }],
 });
 
-gameSchema.statics.findGameByCategory = function(category) {
+gameSchema.statics.findGameByCategory = function (category) {
     return this.find({})
-      .populate({
-        path: "categories",
-        match: { name: category } 
-      })
-      .populate({
-        path: "users",
-        select: "-password"
-      })
-      .then(games => {
-        return games.filter(game => game.categories.length > 0);
-      });
-  };
+        .populate({
+            path: "categories",
+            match: {name: category}
+        })
+        .populate({
+            path: "users",
+            select: "-password"
+        })
+        .then(games => {
+            return games.filter(game => game.categories.length > 0);
+        });
+};
+
 
 module.exports = mongoose.model('game', gameSchema);
