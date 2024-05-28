@@ -2,4 +2,6 @@
 
 Ссылка на домен фронтенда: https://pindiefrontendversace.nomoredomainswork.ru
 
+Ссылка на домен бэкенда: https://pindiebackallversace.nomoredomainswork.ru
+
 IP-адрес: 158.160.133.205
