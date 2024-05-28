@@ -1,8 +1,8 @@
 const games = require("../models/game");
 
 const findAllGames = async (req, res, next) => {
-    if(req.query["categories.title"]) {
-        req.gamesArray = await games.findGameByCategory(req.query["categories.title"]);
+    if(req.query["categories.name"]) {
+        req.gamesArray = await games.findGameByCategory(req.query["categories.name"]);
         next();
         return;
     }
@@ -109,7 +109,7 @@ const checkIfUsersAreSafe = async (req, res, next) => {
 
 const checkIsGameExists = async (req, res, next) => {
     const isInArray = req.gamesArray.find((game) => {
-        return req.body.name === game.name;
+        return req.body.title === game.title;
     });
     if (isInArray) {
         res.setHeader("Content-Type", "application/json");
